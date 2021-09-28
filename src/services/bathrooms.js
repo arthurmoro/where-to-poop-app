@@ -28,8 +28,6 @@ export function getBathrooms() {
             "/Users/arthurmoro/Projects/where-to-poop/app/src/assets/images/bardomario/bardomario2.jpeg",
             "/Users/arthurmoro/Projects/where-to-poop/app/src/assets/images/bardomario/bardomario3.jpeg",
             "/Users/arthurmoro/Projects/where-to-poop/app/src/assets/images/bardomario/bardomario4.jpeg",
-
-            "s3"
           ],
           "comments": [
             { user: "Arthur Moro", text: "Limpo, cheiroso e gostoso", createdAt: new Date() },
@@ -48,6 +46,9 @@ export function getBathrooms() {
               "lng": -45
             }
           },
+          user: {
+            fav: true
+          },
           "description": "Um ótimo lugar que dá a possibilidade de trancar pessoas pra dentro do banheiro caso pareçam mais suspeitas que o alçapão semi-secreto/misterioso no teto; péssimo lugar pra um date.",
           "characteristics": [
             "clean",
@@ -62,8 +63,6 @@ export function getBathrooms() {
             "/Users/arthurmoro/Projects/where-to-poop/app/src/assets/images/bardomario/bardomario2.jpeg",
             "/Users/arthurmoro/Projects/where-to-poop/app/src/assets/images/bardomario/bardomario3.jpeg",
             "/Users/arthurmoro/Projects/where-to-poop/app/src/assets/images/bardomario/bardomario4.jpeg",
-
-            "s3"
           ],
           "comments": [
             { user: "Arthur Moro", text: "Limpo, cheiroso e gostoso", createdAt: new Date() },

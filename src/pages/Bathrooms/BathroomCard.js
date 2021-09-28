@@ -1,9 +1,9 @@
 import React, { useState } from "react"
-import { Text, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import BathroomGallery from "./BathroomGallery"
 import styles from "./styles";
 
-import { Button, Card, Title } from "react-native-paper"
+import { Button, Card, IconButton } from "react-native-paper"
 import ReviewModal from "./Reviews";
 
 
@@ -19,12 +19,30 @@ const BathroomCard = ({ bathroom }) => {
         showModal={openRating}
         name={bathroom?.location?.place}
       />
-      <Card style={{ margin: 16, width: 360 }}>
-        <Card.Title><Title>{bathroom?.location?.place}</Title></Card.Title>
+      <Card style={styles.bathroomCard}>
+        <Card.Title
+          title={bathroom?.location?.place}
+          right={(props) => (
+            <View style={{ flexDirection: "row" }}>
+              <IconButton
+                icon="heart"
+                color={bathroom.user?.fav ? "red" : "black"}
+                onPress={() => { alert("Adicionado aos favoritos") }}
+              />
+              <IconButton
+                icon="dots-vertical"
+                color={bathroom.user?.fav ? "red" : "black"}
+                onPress={() => { alert("Abrir popup de extra") }}
+              />
+            </View>
+          )}
+        />
+
         <Card.Content>
-          <Title>
+          <Text style={styles.textStyle}>
             Local: {bathroom?.location?.place}
-          </Title>
+          </Text>
+          <Text style={styles.textStyle}>Endereço: {bathroom?.location?.formattedAddress || "Não cadastrado :("}</Text>
           <View style={{ flex: 1 }}>
             {bathroom.pictures && <BathroomGallery pictures={bathroom.pictures} />}
           </View>
@@ -37,4 +55,6 @@ const BathroomCard = ({ bathroom }) => {
     </>
   )
 }
+
+
 export default BathroomCard;

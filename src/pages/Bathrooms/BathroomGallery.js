@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Image, TouchableWithoutFeedback, ScrollView, View } from "react-native";
-import { Modal, Dialog, Portal } from "react-native-paper";
+import { Image, TouchableWithoutFeedback, ScrollView, View, FlatList } from "react-native";
+import { Modal, Dialog, Portal, IconButton } from "react-native-paper";
 
 const BathroomGallery = ({ pictures }) => {
   const [clickedImg, setImg] = useState("");
@@ -16,42 +16,51 @@ const BathroomGallery = ({ pictures }) => {
   }
   return (
     <>
-      <ScrollView
+      <FlatList
         horizontal={true}
         onScrollAnimationEnd={true}
-        snapToEnd={true}
-        style={{ flex: 1 }}>
-        {pictures.map(uri => {
+        data={pictures}
+        renderItem={({ item }) => {
           return (
             <TouchableWithoutFeedback
-              onPress={() => showImg(uri)}>
+              onPress={() => showImg(item)}>
               <Image
-                key={uri}
-                style={{ height: 200, width: 200, margin: 10, flex: 1 }}
-                source={{ uri }} />
+                key={item}
+                style={{ height: 200, width: 200, marginRight: 8, marginTop: 8, marginBottom: 8 }}
+                source={{ uri: item }} />
             </TouchableWithoutFeedback>
           )
-        })}
-      </ScrollView>
+        }}
+      />
       <Portal>
-        <Dialog
+        <Modal
           visible={showDialog}
           onDismiss={() => hideImg()}
+          contentContainerStyle={{ padding: 16 }}
         >
-          <Dialog.Content>
-            <View>
-              <Image
-                source={{ uri: clickedImg }}
-                resizeMethod="resize"
-                resizeMode="contain"
-                style={{
-                  width: '100%',
-                  height: "100%",
-                }}
-              />
-            </View>
-          </Dialog.Content>
-        </Dialog>
+          <Image
+            source={{ uri: clickedImg }}
+            style={{
+              width: '100%',
+              height: "100%",
+
+            }}
+          />
+          <IconButton
+            style={{
+              backgroundColor: "gray",
+              opacity: 0.8,
+              position: "absolute",
+              right: 24,
+              top: 24
+            }}
+            icon="close"
+            color={"white"}
+            size={24}
+            onPress={hideImg}
+          />
+
+        </Modal>
       </Portal>
     </>
   )

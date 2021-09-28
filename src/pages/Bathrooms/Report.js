@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { View, TextInput } from 'react-native'
+import { View } from 'react-native'
+import { } from "react-native-paper"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import {
   Modal,
@@ -7,9 +8,9 @@ import {
   Button,
   Portal,
   Card,
-  Text,
   Title,
-  Dialog
+  Dialog,
+  TextInput
 } from 'react-native-paper';
 
 const Reviews = ({ name, showModal, onDismiss }) => {
@@ -20,8 +21,9 @@ const Reviews = ({ name, showModal, onDismiss }) => {
     <Portal>
       <Modal
         onDismiss={() => {
-          onDismiss && typeof onDismiss === "function" && onDismiss()
-          setRating(0)
+          onDismiss &&
+            typeof onDismiss === "function" &&
+            onDismiss()
         }}
         visible={showModal} style={{ justifyContent: "center", alignItems: "center", flex: 1 }}>
         <Card style={{
@@ -30,8 +32,8 @@ const Reviews = ({ name, showModal, onDismiss }) => {
           justifyContent: "center",
           alignItems: "center",
         }}>
-          <Title>Sua avaliação é importante</Title>
-          <Text>Avalie o <Text style={{ fontWeight: "bold" }}>{name}</Text></Text>
+          <Title>Qual o problema com o estabelecimento?</Title>
+          <TextInput />
           <View style={{ padding: 16, flexDirection: "row" }}>
             {
               [1, 2, 3, 4, 5].map(value => {
@@ -56,9 +58,9 @@ const Reviews = ({ name, showModal, onDismiss }) => {
           </View>
           <TextInput />
           <Button
-            onPress={() => setResponseText("Obrigado pela sua avaliação!")}
+            onPress={() => setResponseText("Obrigado. Iremos avaliar a sua denúncia!")}
           >
-            Enviar Avaliação
+            Enviar reclamação
           </Button>
         </Card>
       </Modal>
